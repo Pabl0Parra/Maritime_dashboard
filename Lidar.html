@@ -7,9 +7,11 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <style>
+    
+
     .bg-lidar {
         /* Assuming you've downloaded the image and placed it in the correct directory */
-        background-image: url('bgLidar.jpg');
+        background-image: url('Lidarbg.png');
         background-repeat: no-repeat;
         background-position: center center;
         background-size:cover;
@@ -17,131 +19,203 @@
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1); 
     
     }
+
+    .top-bar {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      z-index: 1000; /* High z-index to keep it above other content */
+      height: 50px;
+    }
+
+    /* Adjust the main content to start below the top bar */
+    .main-content {
+      padding-top: 60px; /* Adjust this value based on the actual height of your top bar */
+    }       
+
       @media (min-width: 1024px) {
+        
         .bg-lidar {
-          background-size: 60%; /* Smaller background size on larger screens */
+          background-size: 80%; /* Smaller background size on larger screens */
         }
       }
+
       @media (min-width: 1280px) {
         .bg-lidar {
           background-size: 90%; /* Even smaller on larger screens */
         }
       }
+
+      @media (min-width: 1920px) {
+        .bg-lidar, .weather-status {
+          background-size: 100%;
+          height: 800px /* Full size on the largest screens */
+        }
+      }
+      
 </style>
 </head>
-<body class="bg-gray-100">
-<div class="flex flex-col h-screen">
-  <!-- Top bar with coordinates and temperature -->
-  <div class="p-4 bg-white flex justify-between items-center">
-    <div class="flex items-center">
+<body class="bg-gray-100 overflow-hidden flex">
+<div class="top-bar p-4 bg-white flex justify-between items-center">
+  <div class="flex items-center">
       <i class="fas fa-map-marker-alt text-gray-700"></i>
       <span class="ml-2 text-sm">43°36.143 N 7°19.006 E</span>
-    </div>
-    <div>
-        <i class="fas fa-temperature-high"></i>  
+  </div>
+  <div>
+      <i class="fas fa-temperature-high"></i>
       <span class="text-sm">14°C</span>
-    </div>
-    <div>
-        <i class="fas fa-calendar-alt"></i>
+  </div>
+  <div>
+      <i class="fas fa-calendar-alt"></i>
       <span class="text-sm">18/12/2023</span>
       <span class="text-sm ml-4">15:04:36</span>
-    </div>
   </div>
+</div>
+<!-- Side bar nav -->
+<div class="bg-white shadow-md w-16 md:w-16 lg:w-24 flex flex-col items-center py-4 fixed h-full">
+  <div class="text-gray-700 text-center mb-4">
+      <i class="fas fa-bars"></i>
+  </div>
+  <button class="text-gray-700 mb-2">
+      <i class="fas fa-compass text-xl"></i>
+  <button class="text-gray-700 mb-2">
+      <i class="fas fa-map text-xl"></i>
+  </button>
+  <button class="text-gray-700 mb-2">
+      <i class="fas fa-sensor text-xl"></i>
+  </button>
+  <button class="text-gray-700 mb-2">
+      <i class="fas fa-camera text-xl"></i>
+  </button>
+  <button class="text-gray-700 mb-2">
+      <i class="fas fa-ellipsis-h text-xl"></i>
+  </button>
+</div>
 
-  <!-- Main content -->
-  <div class="flex-grow p-4 flex">
+<!-- Main content -->
+<div class="main-content flex flex-col w-full pl-16 md:pl-24 lg:pl-32">
+  <div class="flex flex-grow flex-col md:flex-row flex-1 p-4 overflow-hidden">
     <!-- Background image container with fixed height -->
-    <div class="flex-1 bg-lidar h-full flex items-center justify-center ">
+    <div class="flex flex-1 bg-lidar items-center justify-center  space-x-20">
         <!-- Container for the three columns -->
-        <div class="flex justify-left space-x-40 ">
+        <div class="flex flex-start space-x-20 md:space-x-40 lg:space-x-62">
           <!-- First column of data points -->
-          <div class="flex flex-col justify-between space-y-4" style="height: 90%; margin-top: -260px ">
+          <div class="flex flex-col items-center space-y-2" style="height: 90%; margin-top: -126px">
             <!-- 11 data points here for the first column -->
-            <label class="mb-6" for="data-point-1-col1">Lidar Real Time</label>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-1-col1" name="data-point-1-col1" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-2-col1" name="data-point-2-col1" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-3-col1" name="data-point-3-col1" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-4-col1" name="data-point-4-col1" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-5-col1" name="data-point-5-col1" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-6-col1" name="data-point-6-col1" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-7-col1" name="data-point-7-col1" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-8-col1" name="data-point-8-col1" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-9-col1" name="data-point-9-col1" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-10-col1" name="data-point-10-col1" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-11-col1" name="data-point-11-col1" value="5,2 m/s" readonly>
-          </div>
-    
+            <label class="mb-2" for="data-point-1-col1">Lidar Real Time</label>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md align-center" type="text" id="data-point-1-col1" name="data-point-1-col1" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-2-col1" name="data-point-2-col1" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-3-col1" name="data-point-3-col1" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-4-col1" name="data-point-4-col1" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-5-col1" name="data-point-5-col1" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-6-col1" name="data-point-6-col1" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-7-col1" name="data-point-7-col1" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-8-col1" name="data-point-8-col1" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-9-col1" name="data-point-9-col1" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-10-col1" name="data-point-10-col1" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-11-col1" name="data-point-11-col1" value="5,2 m/s" readonly>
+          </div>    
           <!-- Second column of data points -->
-          <div class="flex flex-col justify-between space-y-4" style="height: 90%; margin-top: -260px ">
+          <div class="flex flex-col justify-between space-y-2 items-center" style="height: 90%; margin-top: -126px">
             <!-- 11 data points here for the second column -->
-            <label class="mb-6" for="data-point-1-col2">Lidar Average</label>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-1-col2" name="data-point-1-col2" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-2-col2" name="data-point-2-col2" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-3-col2" name="data-point-3-col2" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-4-col2" name="data-point-4-col2" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-5-col2" name="data-point-5-col2" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-6-col2" name="data-point-6-col2" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-7-col2" name="data-point-7-col2" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-8-col2" name="data-point-8-col2" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-9-col2" name="data-point-9-col2" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-10-col2" name="data-point-10-col2" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-24 h-5 shadow-md" type="text" id="data-point-11-col2" name="data-point-11-col2" value="5,2 m/s" readonly>
-            <!-- ... -->
-          </div>
-    
+            <label class="mb-2" for="data-point-1-col2">Lidar Average</label>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-1-col2" name="data-point-1-col2" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-2-col2" name="data-point-2-col2" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-3-col2" name="data-point-3-col2" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-4-col2" name="data-point-4-col2" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-5-col2" name="data-point-5-col2" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-6-col2" name="data-point-6-col2" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-7-col2" name="data-point-7-col2" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-8-col2" name="data-point-8-col2" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-9-col2" name="data-point-9-col2" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-10-col2" name="data-point-10-col2" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-24 h-3 shadow-md" type="text" id="data-point-11-col2" name="data-point-11-col2" value="5,2 m/s" readonly>            
+          </div>    
           <!-- Third column of data points -->
-          <div class="flex flex-col justify-between space-y-4" style="height: 90%; margin-top: -260px">
+          <div class="flex flex-col justify-between space-y-2" style="height: 90%; margin-top: -126px">
             <!-- 11 data points here for the third column -->
-            <label class="mb-6" for="data-point-1-col3">AGL (Above ground level)</label>
-            <input class="border p-2 text-sm w-16 h-5 shadow-md" type="text" id="data-point-1-col3" name="data-point-1-col3" value="238m" readonly>
-            <input class="border p-2 text-sm w-16 h-5 shadow-md" type="text" id="data-point-2-col3" name="data-point-2-col3" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-16 h-5 shadow-md" type="text" id="data-point-3-col3" name="data-point-3-col3" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-16 h-5 shadow-md" type="text" id="data-point-4-col3" name="data-point-4-col3" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-16 h-5 shadow-md" type="text" id="data-point-5-col3" name="data-point-5-col3" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-16 h-5 shadow-md" type="text" id="data-point-6-col3" name="data-point-6-col3" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-16 h-5 shadow-md" type="text" id="data-point-7-col3" name="data-point-7-col3" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-16 h-5 shadow-md" type="text" id="data-point-8-col3" name="data-point-8-col3" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-16 h-5 shadow-md" type="text" id="data-point-9-col3" name="data-point-9-col3" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-16 h-5 shadow-md" type="text" id="data-point-10-col3" name="data-point-10-col3" value="5,2 m/s" readonly>
-            <input class="border p-2 text-sm w-16 h-5 shadow-md" type="text" id="data-point-11-col3" name="data-point-11-col3" value="5,2 m/s" readonly>
+            <label class="mb-2" for="data-point-1-col3">AGL (Above ground level)</label>
+            <input class="border p-2 text-sm w-16 h-3 shadow-md" type="text" id="data-point-1-col3" name="data-point-1-col3" value="238m" readonly>
+            <input class="border p-2 text-sm w-16 h-3 shadow-md" type="text" id="data-point-2-col3" name="data-point-2-col3" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-16 h-3 shadow-md" type="text" id="data-point-3-col3" name="data-point-3-col3" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-16 h-3 shadow-md" type="text" id="data-point-4-col3" name="data-point-4-col3" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-16 h-3 shadow-md" type="text" id="data-point-5-col3" name="data-point-5-col3" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-16 h-3 shadow-md" type="text" id="data-point-6-col3" name="data-point-6-col3" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-16 h-3 shadow-md" type="text" id="data-point-7-col3" name="data-point-7-col3" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-16 h-3 shadow-md" type="text" id="data-point-8-col3" name="data-point-8-col3" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-16 h-3 shadow-md" type="text" id="data-point-9-col3" name="data-point-9-col3" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-16 h-3 shadow-md" type="text" id="data-point-10-col3" name="data-point-10-col3" value="5,2 m/s" readonly>
+            <input class="border p-2 text-sm w-16 h-3 shadow-md" type="text" id="data-point-11-col3" name="data-point-11-col3" value="5,2 m/s" readonly>
             <!-- ... -->
           </div>
         </div>
       </div>
-    
-
     <!-- Weather and operation status -->
-    <div class="w-1/4 bg-white p-4 ml-4 shadow rounded">
-      <div class="mb-4">
+    <div class="weather-status w-full md:w-1/4 bg-transparent p-4 shadow rounded mt-1 md:mt-0 md:ml-4">
+      <div>
         <div class="w-16 h-16 bg-green-200 rounded-full mx-auto"></div>
         <p class="text-center mt-2">Weather evaluation</p>
       </div>
-      <div class="mb-4">
-        <p class="text-center">Operation Status</p>
-        <div class="border p-2 mt-2">
-          <p class="text-sm">METEO</p>
-          <!-- ... -->
+      <div>        
+        <p class="text-left mt-6">Operation Status</p>
+      </div>
+      <div class="flex flex-col">        
+        <div class="container mx-auto border">
+            <p class="text-sm text-center">WEATHER DATA</p>
+          <!-- create a table with five variables and their value... -->
+            <table class="table-auto w-full">
+                <tbody class="text-left text-gray-600">
+                <tr>
+                    <td class="px-4 py-2 border">Wind</td>
+                    <td class="px-4 py-2 border text-right">5.2 m/s</td>
+                </tr>
+                <tr class="bg-gray-50">
+                    <td class="px-4 py-2 border">Temperature</td>
+                    <td class="px-4 py-2 border text-right">14°C</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 border">Humidity</td>
+                    <td class="px-4 py-2 border text-right">60%</td>
+                </tr>
+                <tr class="bg-gray-50">
+                    <td class="px-4 py-2 border">Visibility</td>
+                    <td class="px-4 py-2 border text-right">10km</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 border">Clouds</td>
+                    <td class="px-4 py-2 border text-right">20%</td>
+                </tr>
+                </tbody>
+            </table>            
         </div>
+        
         <div class="border p-2 mt-2">
-          <p class="text-sm">WAVE DATA</p>
-          <!-- ... -->
+          <p class="text-sm text-center">WAVE DATA</p>
+            <!-- create a table with 3 variables and their value... -->
+            <table class="table-auto w-full">
+                <tbody class="text-left text-gray-600">
+                    <tr>
+                    <td class="px-4 py-2 border">Wave Height</td>
+                    <td class="px-4 py-2 border text-right">1.2 m</td>
+                    </tr>
+                    <tr class="bg-gray-50">
+                    <td class="px-4 py-2 border">Wave Period</td>
+                    <td class="px-4 py-2 border text-right">5s</td>
+                    </tr>
+                    <tr>
+                    <td class="px-4 py-2 border">Wave Direction</td>
+                    <td class="px-4 py-2 border text-right">N</td>
+                    </tr>
+                </tbody>
+            </table>        
         </div>
       </div>
     </div>
   </div>
-
-  <!-- Bottom navigation -->
-  <div class="bg-white p-4 shadow-md flex justify-around">
-    <button class="text-gray-700">NAVIGATION</button>
-    <button class="text-gray-700">MAP</button>
-    <button class="text-gray-700">SENSORS</button>
-    <button class="text-gray-700">CAMERA</button>
-  </div>
 </div>
-
 <script>
   // Example of how to populate an input from an API call
-  // This would be replaced with your actual API call logic
+  // This would be replaced with actual API call logic
   async function fetchData() {
     // Replace the URL with your actual API endpoint
     const response = await fetch('https://api.example.com/data');
