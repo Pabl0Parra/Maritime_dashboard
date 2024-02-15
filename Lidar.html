@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Weather Operation Dashboard</title>
-        <script defer src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -29,14 +29,8 @@
                 border-bottom: 1px solid #999292;
             }
 
-            .sidebar {
-                width: 100%;
-                position: fixed;
-                top: 50px;
-                z-index: 1000;
-                height: 100%;
+            .sidebar-custom {
                 background-color: #3c3c3c;
-                box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
             }
 
             .main-content {
@@ -114,28 +108,63 @@
                 </li>
             </ul>
         </nav>
-
+        <!-- Sidebar -->
         <div
-            class="sidebar shadow-md w-16 md:w-16 lg:w-24 flex flex-col items-center py-4 fixed h-full"
+            id="mySidebar"
+            class="sidebar-custom text-white font-bold h-screen fixed top-0 left-0 overflow-x-hidden z-30 mt-12 transition-width duration-500"
+            style="width: 65px"
         >
-            <div class="text-white text-center mb-4">
-                <i class="fas fa-bars">hi</i>
+            <div class="flex flex-col items-center">
+                <a
+                    href="javascript:void(0)"
+                    class="flex items-center justify-center h-12 w-full cursor-pointer text-4xl mb-4"
+                    >&#9776;</a
+                >
+                <a
+                    href="#"
+                    class="flex items-center justify-start w-full px-4 py-2 transition-colors duration-300 hover:text-gray-200"
+                >
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span
+                        class="ml-2.5 opacity-0 overflow-hidden whitespace-nowrap"
+                        style="transition: opacity 0.3s, width 0.3s"
+                        >Dashboard</span
+                    >
+                </a>
+                <a
+                    href="#"
+                    class="flex items-center justify-start w-full px-4 py-2 transition-colors duration-300 hover:text-gray-200"
+                >
+                    <i class="fas fa-chart-line"></i>
+                    <span
+                        class="ml-2.5 opacity-0 overflow-hidden whitespace-nowrap"
+                        style="transition: opacity 0.3s, width 0.3s"
+                        >Charts</span
+                    >
+                </a>
+                <a
+                    href="#"
+                    class="flex items-center justify-start w-full px-4 py-2 transition-colors duration-300 hover:text-gray-200"
+                >
+                    <i class="fas fa-table"></i>
+                    <span
+                        class="ml-2.5 opacity-0 overflow-hidden whitespace-nowrap"
+                        style="transition: opacity 0.3s, width 0.3s"
+                        >Tables</span
+                    >
+                </a>
+                <a
+                    href="#"
+                    class="flex items-center justify-start w-full px-4 py-2 transition-colors duration-300 hover:text-gray-200"
+                >
+                    <i class="fas fa-cog"></i>
+                    <span
+                        class="ml-2.5 opacity-0 overflow-hidden whitespace-nowrap"
+                        style="transition: opacity 0.3s, width 0.3s"
+                        >Settings</span
+                    >
+                </a>
             </div>
-            <button class="text-white mb-2">
-                <i class="fas fa-compass text-xl"></i>
-            </button>
-            <button class="text-white mb-2">
-                <i class="fa fa-globe text-xl"></i>
-            </button>
-            <button class="text-white mb-2">
-                <i class="fas fa-sensor text-xl"></i>
-            </button>
-            <button class="text-white mb-2">
-                <i class="fas fa-camera text-xl"></i>
-            </button>
-            <button class="text-white mb-2">
-                <i class="fas fa-ellipsis-h text-xl"></i>
-            </button>
         </div>
 
         <!-- Main content -->
@@ -543,7 +572,29 @@
                 </div>
             </div>
         </div>
+
         <script>
+            // Toggle the sidebar
+            document.addEventListener('DOMContentLoaded', function () {
+                var sidebar = document.getElementById('mySidebar');
+
+                sidebar.addEventListener('click', function () {
+                    var isExpanded = sidebar.classList.toggle('expanded');
+                    sidebar.style.width = isExpanded ? '150px' : '65px';
+
+                    var sidebarTexts =
+                        document.querySelectorAll('#mySidebar span');
+                    sidebarTexts.forEach(function (text) {
+                        if (isExpanded) {
+                            text.style.opacity = '1';
+                            text.style.width = 'auto';
+                        } else {
+                            text.style.opacity = '0';
+                            text.style.width = '0';
+                        }
+                    });
+                });
+            });
             // Example of how to populate an input from an API call
             // This would be replaced with actual API call logic
             async function fetchData() {
