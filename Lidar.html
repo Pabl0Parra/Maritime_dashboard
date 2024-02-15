@@ -33,6 +33,14 @@
                 background-color: #3c3c3c;
             }
 
+            /* Custom styles for toggle button rotation */
+            .toggle-btn {
+                transition: transform 0.3s ease;
+            }
+            .expanded .toggle-btn {
+                transform: rotate(180deg);
+            }
+
             .main-content {
                 padding-top: 60px;
             }
@@ -111,18 +119,18 @@
         <!-- Sidebar -->
         <div
             id="mySidebar"
-            class="sidebar-custom text-white font-bold h-screen fixed top-0 left-0 overflow-x-hidden z-30 mt-12 transition-width duration-500"
+            class="sidebar-custom text-white h-screen fixed top-0 left-0 overflow-x-hidden z-30 mt-12 transition-width duration-500 items-center sidebar-custom"
             style="width: 65px"
         >
             <div class="flex flex-col items-center">
                 <a
                     href="javascript:void(0)"
-                    class="flex items-center justify-center h-12 w-full cursor-pointer text-4xl mb-4"
+                    class="toggle-btn flex items-center justify-center h-12 w-full cursor-pointer text-4xl mb-4 mt-2"
                     >&#9776;</a
                 >
                 <a
                     href="#"
-                    class="flex items-center justify-start w-full px-4 py-2 transition-colors duration-300 hover:text-gray-200"
+                    class="ms-3 flex items-center justify-start w-full px-4 py-4 transition-colors duration-300 hover:text-gray-200"
                 >
                     <i class="fas fa-tachometer-alt"></i>
                     <span
@@ -133,7 +141,7 @@
                 </a>
                 <a
                     href="#"
-                    class="flex items-center justify-start w-full px-4 py-2 transition-colors duration-300 hover:text-gray-200"
+                    class="ms-3 flex items-center justify-start w-full px-4 py-4 transition-colors duration-300 hover:text-gray-200"
                 >
                     <i class="fas fa-chart-line"></i>
                     <span
@@ -144,7 +152,7 @@
                 </a>
                 <a
                     href="#"
-                    class="flex items-center justify-start w-full px-4 py-2 transition-colors duration-300 hover:text-gray-200"
+                    class="ms-3 flex items-center justify-start w-full px-4 py-4 transition-colors duration-300 hover:text-gray-200"
                 >
                     <i class="fas fa-table"></i>
                     <span
@@ -155,7 +163,7 @@
                 </a>
                 <a
                     href="#"
-                    class="flex items-center justify-start w-full px-4 py-2 transition-colors duration-300 hover:text-gray-200"
+                    class="ms-3 flex items-center justify-start w-full px-4 py-4 transition-colors duration-300 hover:text-gray-200"
                 >
                     <i class="fas fa-cog"></i>
                     <span
@@ -580,7 +588,7 @@
 
                 sidebar.addEventListener('click', function () {
                     var isExpanded = sidebar.classList.toggle('expanded');
-                    sidebar.style.width = isExpanded ? '150px' : '65px';
+                    sidebar.style.width = isExpanded ? '140px' : '65px';
 
                     var sidebarTexts =
                         document.querySelectorAll('#mySidebar span');
